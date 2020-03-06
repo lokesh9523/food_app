@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<!-- <div class="text-center ion-padding">
+  <h4><b>Registration </b></h4>
+</div> -->
+
+<ion-content class="ion-text-center" *ngIf="!showregistration">
+  <div style="padding-top: 80px!important;">
+  <ion-row class="ion-align-items-center ion-justify-content-center" >
+    <!-- <ion-card style="padding: 10%;"> -->
+      <ion-col size="12">
+        <ion-button  size="large" shape="round" style="text-transform: none;" (click)="showRegistration()">Suppliers</ion-button>
+      </ion-col>
+      <ion-col size = "12">
+        <ion-button  size="large" shape="round" style="text-transform: none;" (click)="showRegistration()">Users</ion-button>
+      </ion-col>
+    <!-- </ion-card> -->
+  </ion-row>
+</div>
+</ion-content>
+
+<ion-content>
+  <form [formGroup]="validations_form" (ngSubmit)="onSubmit(validations_form.value)" *ngIf="showregistration">
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating" >Name
+          </ion-label>
+          <ion-input type="text" formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating" >Email ID
+          </ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating" >Mobile
+          </ion-label>
+          <ion-input type="text" formControlName="mobile"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating" >Password</ion-label>
+          <ion-input formControlName="password" [type]="password" clearOnEdit="false">
+          </ion-input>
+         
+        </ion-item>
+
+
+        <div text-center class="ion-padding ion-float-right">
+          <ion-button  (click)="OnRegistration()">Register</ion-button>
+          <!-- <button type="submit"  [disabled]="!validations_form.valid"class="btn btn-danger btn-round">Login</button> -->
+        </div>
+
+        <!-- <div text-center class = "ion-padding ion-float-left">
+          <ion-text color="primary" routerLink="" routerDirection="forward">Forgot Password </ion-text>
+        </div> -->
+      </ion-card-content>
+    </ion-card>
+  </form>
+
+  
+
+</ion-content>

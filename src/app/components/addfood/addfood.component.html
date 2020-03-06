@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar class="toolbar-style">
+    <ion-icon name="arrow-back" slot="start" size="large" class="back-style cursor-pointer" (click)="closeModal()">
+    </ion-icon>
+    <ion-title>
+      Add Food Items
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-list>
+      <form [formGroup]="registrationFormGroup">
+        <ion-item>
+          <ion-label>Type</ion-label>
+          <ion-select formControlName="food_type_id" [class.invalid]="!registrationFormGroup.controls.food_type_id.valid && (registrationFormGroup.controls.food_type_id.dirty || submitAttempt)">
+            <ion-select-option  *ngFor="let item of foodTypes" value="{{item.id}}">{{item.display_name}}  </ion-select-option>
+            <!-- <ion-select-option value="2">Lunch</ion-select-option>
+            <ion-select-option value="3">Dinner</ion-select-option> -->
+
+          </ion-select>
+        </ion-item>
+        <div
+        *ngIf="!registrationFormGroup.controls.food_type_id.valid  && (registrationFormGroup.controls.food_type_id.dirty || submitAttempt)">
+        <p>Please select the type.</p>
+      </div>
+        <ion-item>
+          <ion-label>Food Name</ion-label>
+          <ion-input formControlName="display_name" type="text"
+          [class.invalid]="!registrationFormGroup.controls.display_name.valid && (registrationFormGroup.controls.display_name.dirty || submitAttempt)">
+        </ion-input>
+      </ion-item>
+      <div
+        *ngIf="!registrationFormGroup.controls.display_name.valid  && (registrationFormGroup.controls.display_name.dirty || submitAttempt)">
+        <p>Please enter a valid name.</p>
+      </div>
+
+      </form>
+    </ion-list>
+  </ion-card>
+  <ion-button expand="full" (click)="submit()">
+    <span>Submit</span>
+    <!-- <ion-spinner name="crescent" *ngIf="showSpinner"></ion-spinner> -->
+  </ion-button>
+</ion-content>

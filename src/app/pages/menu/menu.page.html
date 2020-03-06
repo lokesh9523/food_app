@@ -1,0 +1,55 @@
+
+  <ion-menu contentId = "content">
+    <ion-header>
+      <ion-toolbar >
+          <ion-icon name="home" slot="start"></ion-icon>
+        <ion-title>Home</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content >
+      <div *ngFor ="let m of menus">
+      <ion-menu-toggle *ngIf= "m.url">
+          <ion-item [routerLink] = "m.url" routerDirection="root" routerLinkActive="active">
+            <ion-icon [name]="m.icon" slot="start"></ion-icon>
+            <ion-label>
+              {{m.title}}
+            </ion-label>
+          </ion-item>
+            
+      </ion-menu-toggle>
+      <ion-item button *ngIf = "m.children?.length > 0" (click)="m.open = !m.open" [class.active-parent]="m.open" detail ="false">
+          <ion-icon [name]="m.icon" slot="start"></ion-icon>
+        <ion-icon slot="end" name="arrow-forward" *ngIf="!m.open"></ion-icon>
+        <ion-icon slot = "end" name = "arrow-down" *ngIf="m.open"></ion-icon>
+        <ion-label>
+            {{m.title}}
+          </ion-label>
+      </ion-item>
+
+      <ion-list *ngIf="m.open">
+          <ion-menu-toggle >
+              <ion-item *ngFor = "let sub of m.children" [routerLink] = "sub.url" routerDirection="root" routerLinkActive="active">
+                <ion-icon [name]="sub.icon" slot="start"></ion-icon>
+                <ion-label>
+                  {{sub.title}}
+                </ion-label>
+              </ion-item>
+                
+          </ion-menu-toggle>
+      </ion-list>
+   
+      <!-- <ion-list>
+        <ion-menu-toggle auto-hide="false" *ngFor = "let m of menus">
+          <ion-item [routerLink] = "m.url" routerDirection="root" [class.active-item]="selectedPath === m.url">
+            {{m.title}}
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list> -->
+      </div>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="content" main></ion-router-outlet>
+<!-- </ion-split-pane> -->
+
+
